@@ -17,16 +17,20 @@ $password=test_input($_POST['password']);
 }
 
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
-$connection = mysql_connect("localhost", "root","1234");
+$connection = mysqli_connect("localhost", "root","1234");
+ if(mysqli_connect_errno())
+ {
+  echo "failed to connect to mysql:" . mysqli_connect_errno();
+ }
 
 
 // Selecting Database 
-$db = mysql_select_db("ems1", $connection);
+$db = mysqli_select_db($connection, "ems1");
 
 if($d=="0")
 {
-$query = mysql_query("select * from login where password='$password' AND username='$username' AND designation='0'", $connection);
-$rows = mysql_num_rows($query);
+$query = mysqli_query($connection,"select * from login where password='$password'AND username='$username' AND designation='0'");
+$rows = mysqli_num_rows($query);
 if ($rows == 1 ) {
  
 
@@ -35,8 +39,8 @@ header("location: admin.html"); // Redirecting To Other Page
 }
 if($d=="1")
 {
-$query = mysql_query("select * from login where password='$password' AND username='$username' AND designation='1'", $connection);
-$rows = mysql_num_rows($query);
+$query = mysqli_query($connection,"select * from login where password='$password' AND username='$username' AND designation='1'");
+$rows = mysqli_num_rows($query);
 if ($rows == 1 ) {
  
 
@@ -47,13 +51,11 @@ else
 {
 $error = "Username or Password is invalid";
 }
-mysql_close($connection); // Closing Connection
+mysqli_close($connection); // Closing Connection
 }
 function test_input($data) 
 {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
+  $data = mysqli_real_escape_string($connection, $_POST['data']);
   return $data;
 }
 ?>
