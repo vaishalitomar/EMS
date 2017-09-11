@@ -17,7 +17,16 @@ $password=mysqli_real_escape_string($connection, $_POST['password']);
 }
 
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
+if($d=="2")
+{
+ $query = mysqli_query($connection,"select * from login where password='$password'AND username='$username' AND designation='2'");
+$rows = mysqli_num_rows($query);
+if ($rows == 1 ) {
+ 
 
+header("location: superadmin.html"); // Redirecting To Other Page
+}
+}
 if($d=="0")
 {
 $query = mysqli_query($connection,"select * from login where password='$password'AND username='$username' AND designation='0'");
