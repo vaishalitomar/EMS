@@ -24,7 +24,7 @@ $rows = mysqli_num_rows($query);
 if ($rows == 1 ) {
  
 
-header("location: superadmin.html"); // Redirecting To Other Page
+header("location: registration1.php"); // Redirecting To Other Page
 }
 }
 if($d=="0")
