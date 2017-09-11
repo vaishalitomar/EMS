@@ -20,6 +20,9 @@ include("login.php");
 <input type="radio" name="desn" value="0">
 <label>coordinator:</label>
 <input type="radio" name="desn" value="1">
+   <label>superadmin: </label>
+   <input type="radio" name="desn" value="2">
+   
 <br><br>
 <label>UserName :</label>
 <input id="name" name="username" placeholder="username" type="text">
