@@ -1,46 +1,89 @@
-/*body {
-    background-image: url("../images/homepgbg.jpg");
-    background-repeat:repeat;
-    padding-top: 5px;
-    background-attachment: fixed;
-    }*/
-    * {
+* {
     box-sizing: border-box;
 }
-body{
-	background: url("../images/homepgbg.jpg") no-repeat center fixed; 
-  background-size: cover;
-}	
+.welcome{
+    background-color: black;
+    color:white;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 50px;  
+    opacity:0.7; 
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
 .header {
-    background-color: #ffffff;
-    color: #000000;
-    opacity:0.5;
+    background-color: white;
+    color: black;
+    opacity: 0.8;
+    padding: 15px;
+    text-align: right;
 }
-.headerimg {
-    z-index:+1;
-    text-align:center;
-}
-.slideshow{
-    float:left;
-	width: 391px;
+.menu {
+    padding: 8px;
+    margin-left: 20px;
     height: 561px;
     border-radius: 18px;
     box-shadow: 5px 5px 25px black;
 }
-.container {
-    margin:50px 0px 0px 50px;
-    float: left;
- position: relative;
-    width:350px;
-    height:300px;
-    background:white;
-    opacity: 0.5;
+.menu :hover {
+    background-color: #0099cc;
 }
-
-.topleft {
-
-    position: absolute;
-    top: 8px;
-    left: 16px;
+.aside {
+    background-color: white;
+    padding: 15px;
+    color: black;
+    text-align: center;
     font-size: 18px;
+    opacity: 0.8;
+    border: 1px solid black;
+    border-radius: 18px;
+    box-shadow: 5px 5px 25px black;
+}
+.footer {
+    background-color: #0099cc;
+    color: #ffffff;
+    opacity: 0.7;
+    text-align: center;
+    font-size: 12px;
+    padding: 15px;
+}
+/* For mobile phones: */
+[class*="col-"] {
+    width:75%;
+    height :auto;
+    margin-left:10%;
+    margin-top:10px;
+    text-align: center;
+}
+[class*="slideimg"]{
+    text-align: center;}
+@media only screen and (min-width: 800px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;margin-left:0px;}
+    .col-3a {width: 25%;margin-left:0px;margin-top: 120px;}
+    .requests{width: 40%;margin-left:30%}
+    .register{width: 50%;margin-left:25%}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+    .slideimg{
+        float:left;
+        border-radius:18px;
+        box-shadow: 5px 5px 5px black;
+       };
 }
