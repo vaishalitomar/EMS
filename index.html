@@ -1,27 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>EMS-AKGEC</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+<title>EMS-AKGEC</title>
+    <link rel="stylesheet" type="text/css" href="emscss.css">
+
+<style>
+body{
+       background: url("images/homepgbg.jpg") no-repeat center fixed; 
+       background-size: cover;
+     }
+</style>
+
 </head>
+
 <body>
-	<div class="header">
-	<div class="headerimg"><!--
-	<img src="images/akgeclogo.png">-->
-	</div>
-	<h1>Event management system</h1>
-</div>
-<div class="slideshow">
-<img src="images/Sample01.png">
-</div>
-<div class="container">
-<div class="topleft">Top1</div>
+<div class="header">
+<a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
+  <h1 style="opacity: 1;">Event Management system</h1>
 </div>
 
-<div class="container">
-<div class="topleft">Top2</div>
+<div class="row">
+
+<div class="slideimg">
+<img src="images/Sample01.jpg" alt>
 </div>
+
+<div class="col-3a">
+  <div class="aside">
+      <h1>Students</h1>
+    <button onclick="location.href='RegForm.html'" class="button">Registration</button>
+  </div>
+</div>
+
+<div class="col-3a">
+  <div class="aside">
+    <h1 style="font-size:25px">Login</h1>
+
+    <form action="/action_page.php">
+    <input type="radio" name="person" value="A" style="text-align: left"; required="required"/>Admin<br><input type="radio" name="person" value="C" required="required"/>Coordinator<br>
+    <label><p style="text-align: left;"><b>Username</b><p></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label><p style="text-align: left;"><b>Password</b><p></p></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="submit" value="Login">
+    </form>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>Thank You</p>
+</div>
+
 </body>
 </html>
