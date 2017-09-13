@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMS-AKGEC</title>
+    <link rel="stylesheet" type="text/css" href="emscss.css">
+
+<style>
+body{
+       background: url("images/coodpgbg.jpg") no-repeat center fixed; 
+       background-size: cover;
+     }
+</style>
+
+</head>
+<body>
+<div class="header">
+<a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
+  <h1 style="opacity: 1;">Event Management system</h1>
+</div>
+<div class="welcome">Welcome Coordinator</div>
+
+<div class="row">
+
+<div class="register">
+  <div class="aside3">
+    <h2 style="color: blue;text-align: center;"><b><u>New Event Details</u></b></h2><br>
+    <form action="/action_page.php">
+            <label style="text-align: left;"><b>Event Name:</b></label>
+            <input type="text" name="name" id="textdeco" placeholder="Enter Event Name" required="required" pattern="^[a-zA-Z]{1,40}$" />
+            <br><br>
+            <label style="text-align: left;"><b>Event Category: </b></label>
+            <select name="date" id="textdeco" required="required" >
+                <option>select</option>
+                <option>Culture</option> 
+                <option>Technical</option> 
+            </select>
+            <br><br>
+            <label style="text-align: left;"><b>Event Date: </b></label>
+            <select style="width: 15%" name="date" id="textdeco" required="required" >
+                <option>DD</option> 
+                <option>1</option> 
+                <option>2</option> 
+                <option>3</option> 
+                <option>4</option> 
+                <option>5</option> 
+                <option>6</option> 
+                <option>7</option> 
+                <option>8</option> 
+                <option>9</option> 
+                <option>10</option> 
+                <option>11</option> 
+                <option>12</option> 
+                <option>13</option> 
+                <option>14</option> 
+                <option>15</option> 
+                <option>16</option> 
+                <option>17</option> 
+                <option>18</option> 
+                <option>19</option> 
+                <option>20</option> 
+                <option>21</option> 
+                <option>22</option> 
+                <option>23</option> 
+                <option>24</option> 
+                <option>25</option> 
+                <option>26</option> 
+                <option>27</option> 
+                <option>28</option> 
+                <option>29</option> 
+                <option>30</option> 
+                <option>31</option> 
+    </select>
+    <select style="width: 15%" name="month" id="textdeco" required="required" >
+                <option>MM</option> 
+                <option>1</option> 
+                <option>2</option> 
+                <option>3</option> 
+                <option>4</option> 
+                <option>5</option> 
+                <option>6</option>
+                <option>7</option> 
+                <option>8</option> 
+                <option>9</option> 
+                <option>10</option> 
+                <option>11</option> 
+                <option>12</option> 
+                
+    </select>
+    <select style="width: 20%" name="year" id="textdeco" required="required" >
+                <option>YYYY</option> 
+                <option>2017</option> 
+                <option>2018</option> 
+    </select>
+    <br><br>
+    <label style="text-align: left;"><b>Venue Name:</b></label>
+            <input type="text" name="venue" id="textdeco" placeholder="Enter event's venue name" required="required"/>
+            <br><br>
+    
+            <label style="text-align: left;"><b>Event Id.:</b></label>
+            <input type="text" name="number" pattern="^[+0-9]{1,3})?([0-9]{10}$" id="textdeco" placeholder="Enter Event Id (5 digits)" required="required" />
+            <br><br>
+
+            <label style="text-align: left;"><b>Participants:</b></label><br><br>
+            <input type="checkbox" name="first" value="First" /> First year<br>
+            <input type="checkbox" name="second" value="Second" /> Second year<br>
+            <input type="checkbox" name="third" value="Third" /> Third year<br>
+            <input type="checkbox" name="fourth" value="Fourth" /> Fourth year<br>
+            <br><br>
+            <label style="text-align: left;"><b>Upload Event Pic (420x600 px ans size 100KB):</b></label><br>
+            <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+            <input style="width: 20%" type="submit" value="Upload Image" name="submit">
+            
+            <div style="text-align: center;">
+            <br><br>
+            <button type="submit" class="button2">Submit</button>
+           <button type="reset" class="button3">Reset</button>
+           <br>.
+           </div>
+    </form>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>Thank You</p>
+</div>
+
+
+</body>
+</html>
