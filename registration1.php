@@ -1,6 +1,8 @@
 <?php
 require('db_connection.php');
 require('admin&coordinator_regis.php');
+echo "welcome".$_SESSION["name"];
+
 ?>
 <html>
 <head>
