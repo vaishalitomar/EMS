@@ -1,6 +1,7 @@
 <?php
  include('db_connection.php');
 $error=''; // Variable To Store Error Message
+session_start();
 if (isset($_POST['submit'])) 
 {
 if (empty($_POST['username']) || empty($_POST['password']))
@@ -15,7 +16,7 @@ $username=mysqli_real_escape_string($connection, $_POST['username']);
 $password=mysqli_real_escape_string($connection, $_POST['password']);
 
 }
-
+$_SESSION["name"]=$username;
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
 if($d=="2")
 {
