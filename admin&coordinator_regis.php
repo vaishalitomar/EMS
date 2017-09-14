@@ -1,6 +1,7 @@
 <?php 
  include('db_connection.php'); 
  $error=""; // Variable To Store Error Message 
+session_start();
  if (isset($_POST['submit']))  
  { 
  if (empty($_POST['username']) || empty($_POST['password'])) 
