@@ -1,6 +1,7 @@
 <?php
 require('db_connection.php');
 include('society_regis.php');
+echo "welcome ".$_SESSION["name"];
 ?>
 <html>
 <head>
