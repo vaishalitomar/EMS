@@ -1,6 +1,7 @@
 <?php 
  include('db_connection.php'); 
  $error="";
+session_start();
  if (isset($_POST['submit']))  
  {
  if (empty($_POST['name']) || empty($_POST['cod_id'])|| empty($_POST['soc_id'])|| empty($_POST['cod_name'])) 
@@ -25,9 +26,7 @@ else
 {
    echo "registered as a society";
 }
-
  
 mysqli_close($connection);
 }
 ?> 
-
