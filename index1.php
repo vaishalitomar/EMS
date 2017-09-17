@@ -36,7 +36,7 @@ $query = mysqli_query($connection,"SELECT * from login where password='$password
 $rows = mysqli_num_rows($query);
 if ($rows == 1 ) {
  
-header("location: society.php"); // Redirecting To Other Page
+header("location: admin1.html"); // Redirecting To Other Page
 }
 }
 if($designation=="1")
@@ -45,7 +45,7 @@ $query = mysqli_query($connection,"SELECT * from login where password='$password
 $rows = mysqli_num_rows($query);
 if ($rows == 1 ) {
  
-header("location: coordinator.php");  
+header("location: coordinator1.html");  
 }
 }
 else 
