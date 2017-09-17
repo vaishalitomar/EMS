@@ -11,7 +11,7 @@ else{
       if(isset($_POST['hostler']))
 {$hostler=$_POST['hostler'];}
 else{
-	$errgender = "please choose one field";
+	$errhostler = "please choose one field";
       $error=1;}
 	$username=$_POST['username'];	
 	$name=$_POST['name'];
@@ -39,11 +39,9 @@ $name = type_cast($name);
 if(empty($name))
 {$errname="plz fill the name ";$error=1;}
 $banch=type_cast($branch);
-if(empty($branch))
+if(empty(($branch)&&($year)))
 {$errbranch="plz fill the branch ";$error=1;}
-$year = type_cast($year);
-if(empty($year))
-{$erryear="plz fill your year ";$error=1;}
+
 $event=type_cast($event);
 if(empty($event))
 {$errevent="plz fill the event name ";$error=1;}
@@ -91,7 +89,7 @@ else
 //password_hash()
 ?>
 	
-<form action="registrations.php" method="POST">
+<!--<form action="registrations.php" method="POST">
 Event <br>
 <input type = "text" name = "event" value = "<?php if(!empty($event)) echo $event; ?>">
 <span class="error">*<?php echo $errevent;?></span><br>
@@ -151,6 +149,143 @@ password<br>
 <input type ="password" name="password" >
 <span class="error">*<?php echo $errpassword;?></span><br><br>
 <input type="submit" value="Submit">
+pattern="^[a-zA-Z]{1,40}$"
 </form>
+-->
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMS-AKGEC</title>
+    <link rel="stylesheet" type="text/css" href="css/emscss.css">
 
+<style>
+body{
+       background: url("images/regpgbg.jpg") no-repeat center fixed; 
+       background-size: cover;
+     }
+</style>
+
+</head>
+<body>
+<script src="js/emsjs.js">
+</script>
+
+<script >
+var snd1= new Audio("sounds/welcomestudent.mp3");
+snd1.play();
+</script>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<div class="header">
+<a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
+  <h1 style="opacity: 1;">Event Management system</h1>
+</div>
+<div class="welcome">Welcome Student</div>
+<div class="row">
+
+<div class="register">
+  <div class="aside3">
+    <h2 style="color: red;text-align: center;"><b><u>Register Here</u></b></h2><br>
+    <form action="registrations.php" method="POST">
+    <label style="text-align: left;"><b>Event</b></label>
+    <select name="event" id="textdeco" required="required" value = "<?php if(!empty($event)) echo $event; ?>">
+<span class="error">*<?php echo $errevent;?></span><br> 
+                <option value = "1">dance</option> 
+                <option value = "2">codechef</option> 
+                <option value = "3">echlon</option> 
+                <option value = "4">scrolls</option> 
+                <option value = "5">battle</option> 
+                <option value ="6">workshop</option> 
+                <option>F</option> 
+    </select><br><br>
+            <label style="text-align: left;"><b>Society Name</b></label>
+            <input type="text" name="society_name" id="textdeco" placeholder="Enter Society Name" required="required"   value="<?php if(!empty($society_name)) echo $society_name; ?>" />
+            <span class="error">*<?php echo $errsociety_name;?></span>
+            <br><br>
+            <label style="text-align: left;"><b>Name</b></label>
+            <input type="text" name="name" id="textdeco" placeholder="Enter Name" required="required"   value="<?php if(!empty($name))echo $name;?>" />
+            <span class="error">*<?php echo $errname;?></span>
+            <br><br>
+            <label style="text-align: left;"><b>Gender</b></label>
+            <input type="radio" name="gender" value="M" style=""/>Male
+            <input type="radio" name="gender" value="F"/>Female
+            <span class="error">* <?php echo $errgender;?></span>
+            <br><br>
+            <label style="text-align: left;"><b>Email</b></label>
+            <input type="email" name="email" id="textdeco" placeholder="Enter Email" required="required"  value="<?php if(!empty($email)) echo $email;?>"/>
+            <span class="error">* <?php echo $erremail;?></span>
+            <br><br>
+            <label style="text-align: left;"><b>Student No.</b></label>
+            <input type="text" name="student_no" maxlength="7" pattern="^[+0-9]{1,3})?([0-9]{10}$" placeholder="Enter Student Number" id="textdeco" required="required"  value="<?php if(!empty($student_no))echo $student_no;?>" />
+             <span class="error">*<?php echo $errstudent_no;?></span>
+            <br><br>
+            <label style="text-align: left;"><b>Contact No.</b></label>
+            <input type="text" name="contact_no" maxlength="10" pattern="^[+0-9]{1,3})?([0-9]{10}$" placeholder="Enter Mobile Number" id="textdeco" required="required" value="<?php if(!empty($contact_no)) echo $contact_no;?>" />
+            <span class="error">*<?php echo $errcontact_no;?><br>
+            <br><br>
+            <label style="text-align: left;"><b>Branch and year: </b></label>
+            <select style="width: 15%" name="branch" id="textdeco" required="required" value="<?php if(!empty($branch))echo $branch;?>"  >
+                <option value="1">CS</option>
+     <option value="2">IT</option>
+      <option value="3" >EC</option>
+       <option value="4">CL</option>
+      <option value="5">EN</option> 
+     <option value="6">ME</option>
+    <option value="7">EI</option>
+    </select>
+    <select style="width: 15%" name="year" id="textdeco" required="required" value="<?php if(!empty($year))echo $year;?>" >
+             <option value="1">1st</option>
+     <option value="2">2nd</option>
+      <option value="3" >3rd</option>
+       <option value="4">4th</option>    
+                
+                
+    </select>
+    <span class="error">*<?php echo $errbranch;?>
+            <br><br>
+            <label style="text-align: left;"><b>Hosteler</b></label>
+            <input type="radio" name="hostler" value="y" required="required"/>Yes<input type="radio" name="hostler" value="n" required="required" />No
+            <span class="error">*<?php echo $errhostler;?><br>
+
+            <br><br>
+            <label style="text-align: left;"><b>Upload document(if any):</b></label><br>
+            <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+            <input style="width: 20%" type="submit" value="Upload Image" name="submit">
+            <br><br>
+            <label p style="text-align: left;"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required  value="<?php if(!empty($username)) echo $username;?>">
+            <span class="error">*<?php echo $errusername;?>
+            <br><br>
+            <label style="text-align: left;"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+            <span class="error">*<?php echo $errpassword;?></span>
+            <br><br>
+            <div style="text-align: center;">
+            <br><br>
+            <button type="submit" class="button2">Submit</button>
+           <button type="reset" class="button3">Reset</button>
+           </div>
+    </form>
+    <br><br>
+    <div id="overlay" onclick="off()">
+           <div id="text">Terms And Conditions</div>
+           </div>
+
+           <div style="text-align: center;">
+           <button style="color:white; background-color:blue;" class="button" onclick="on()">TermsAndCondition</button>
+           <br>.
+           </div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>Thank You</p>
+</div>
+
+</body>
+</html>
