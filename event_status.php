@@ -44,7 +44,7 @@ body{
       <th>Event Venue</th>
       <th style="color: red;">Status</th>
     </tr>
-    <form action="add.php" method="post">
+    <form action="event_status1.php" method="post">
     <?php
 
 $query = mysqli_query($connection,"SELECT * FROM `co-ordinator`");
@@ -65,11 +65,29 @@ echo mysqli_errno($connection).":".mysqli_error($connection);
 
           
 <td>
-          <select name="status[]" multiple>
-          <option value='1'>Pending</option>
-          <option value='2'>Approve</option>
-           <option value='3'>Cancel</option> 
+          <select name="status[]" required="required">
+          <option value='1'>
+              <?php $query1 = mysqli_query($connection,"SELECT event_status FROM `co-ordinator` where event_id=$k"); 
+              $row1 = mysqli_fetch_array($query1);
+          if($row1['event_status']==2)
+          {
+              echo"pending"; $s="pending";
+          }
+          if($row1['event_status']==3)
+          {
+              echo"approve"; $s="approve";
+          }
+          if($row1['event_status']==4 )
+          {
+              echo"cancel";$s="cancel";
+          }
+              ?>
+              </option>
+          <option value='2'>Pending</option>
+          <option value='3'>Approve</option>
+           <option value='4'>Cancel</option> 
            </select>
+           
            
            </td>
     <?php
