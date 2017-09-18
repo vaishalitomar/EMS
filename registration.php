@@ -96,7 +96,7 @@ if($query_run==true)
 	}
 
 ?>
-	
+	<!--
 <form action="registration.php" method="POST">
 Event <br>
 <input type = "text" name = "event" value = "<?php if(!empty($event)) echo $event; ?>">
@@ -159,7 +159,7 @@ password<br>
 <input type="submit" value="Submit">
 </form>
 
-<!--
+-->
 <!DOCTYPE html>
 <html>
 <head>
