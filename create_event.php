@@ -1,6 +1,7 @@
 <?php
 require('connect_data.php');
-$errevent_name=$errsociety_name=$errevent_date=$errevent_timing=$errevent_venue=$errsociety_id=$errabout_event="";
+if(!empty($_SESSION['username']))
+{$errevent_name=$errsociety_name=$errevent_date=$errevent_timing=$errevent_venue=$errsociety_id=$errabout_event="";
 $error = 0;
 if(isset($_POST['event_name'],$_POST['society_id'],$_POST['society_name'],$_POST['event_date'],$_POST['event_venue'],$_POST['about_event'],$_POST['event_ist']))
 { 
@@ -51,6 +52,7 @@ else
   else
   {echo 'invalid society id';
   }
+}
 }
 }
 

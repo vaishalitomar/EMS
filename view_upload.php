@@ -1,19 +1,14 @@
 <?php
-<?php
-include('connection.php');
+include('connect_data.php');
 if(!empty($_SESSION['username']))
 {if(!empty($_SESSION['society_id']))
-if($c==1)
-{echo ' you have suceesfully abort the event';
-}
-else
-{header('location:go_to.php');
-}
-else
+	{$society_name=$_SESSION['society_name'];
+     header('location:uploaded/'.$society_name.'/');
+	}
 	
+	else
 	{ header('location:go_to.php');}
 }
 else
 {header('location:login.php');}
-
 ?>

@@ -1,7 +1,9 @@
 <?php
-$host='localhost';session_start();ob_start();
+session_start();ob_start(); 
+$host='localhost';
 $name1='root';
 $pass='';
-$database='registration_forms';
+$database='b_database';
 $link=mysqli_connect($host,$name1,$pass,$database);
+
 ?>

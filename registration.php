@@ -1,7 +1,7 @@
 <?php 
 require('connect_data.php');
-$errusername=$errname=$errbranch=$erryear=$errevent=$errstudent_no=$errcontact_no=$errhostler=$erremail=$errgender=$errpassword=$errsociety_name=$errevent_category="";$error=0;
-if(isset($_POST['event'],$_POST['society_name'],$_POST['name'],$_POST['email'],$_POST['student_no'],$_POST['contact_no'],$_POST['branch'],$_POST['year'],$_POST['username'],$_POST['password'],$_POST['gender'],$_POST['hostler'],$_POST['event_category']))
+$errusername=$errname=$errbranch=$erryear=$errevent=$errstudent_no=$errcontact_no=$errhostler=$erremail=$errgender=$errpassword=$errsociety_name="";$error=0;
+if(isset($_POST['event'],$_POST['society_name'],$_POST['name'],$_POST['email'],$_POST['student_no'],$_POST['contact_no'],$_POST['branch'],$_POST['year'],$_POST['username'],$_POST['password'],$_POST['gender'],$_POST['hostler']))
 { $error=0;
 $gender=$_POST['gender'];
 	if(empty($gender))
@@ -17,7 +17,7 @@ $hostler=$_POST['hostler'];
 		$branch=$_POST['branch'];
 			$year=$_POST['year'];
 				$event=$_POST['event'];
-$event_category = $_POST['event_category']; 
+   
 $student_no=$_POST['student_no'];
 $contact_no=$_POST['contact_no'];
 $hostler=$_POST['hostler'];
@@ -31,10 +31,6 @@ function type_cast($data)
  $data=htmlspecialchars($data);
  $data=stripslashes($data);
   return $data; } 
-
-  $username=type_cast($event_category);
-if(empty($event_category))
-{$errevent_category="plz choose the field ";$error=1;}
 $username=type_cast($username);
 if(empty($username))
 {$errusername="plz fill the username ";$error=1;}
@@ -78,11 +74,12 @@ if(empty($password))
       //$c=1;
 	
 	if($error!=1)
-	{$query="INSERT INTO `registrations`(`event_category`,`event_name`,`name`,`gender`,`email`,`student_no`,`contact_no`,`branch`,`year`,`hostler`,`username`,`password`,`society_name`) VALUES('$event_category','$event','$name','$gender','$email','$student_no','$contact_no','$branch','$year','$hostler','$username','$password1','$society_name')";
+	{$query="INSERT INTO `registrations`(`event_name`,`name`,`gender`,`email`,`student_no`,`contact_no`,`branch`,`year`,`hostler`,`username`,`password`,`society_name`) VALUES('$event','$name','$gender','$email','$student_no','$contact_no','$branch','$year','$hostler','$username','$password1','$society_name')";
 
 $query_run=mysqli_query($link,$query);
 if($query_run==true)
 {$query="INSERT INTO `login`(`username`,`password`,`position`)VALUES('$username','$password','S')";
+$query_run=mysqli_query($link,$query);
 if($query_run==true)
 {echo 'you have register succesfully';
 }
@@ -90,13 +87,13 @@ if($query_run==true)
 {echo 'error'.mysqli_error($link);}
 	}
 	else
-	{echo 'eror'.mysqli_error($link);
+	{echo 'eror'.'NOT CREATED EVENT'.mysqli_error($link);
 	}
 }
 	}
 
 ?>
-	<!--
+	
 <form action="registration.php" method="POST">
 Event <br>
 <input type = "text" name = "event" value = "<?php if(!empty($event)) echo $event; ?>">
@@ -159,7 +156,7 @@ password<br>
 <input type="submit" value="Submit">
 </form>
 
--->
+<!--
 <!DOCTYPE html>
 <html>
 <head>
