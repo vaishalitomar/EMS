@@ -23,17 +23,37 @@ $query_run=mysqli_query($link,$query);
 	$society_id=$_SESSION['society_id'];
 $query="SELECT * FROM `upload` WHERE `society_id`='$society_id'";
 $query_run=mysqli_query($link,$query);
+?>
+		<form method="post" action=" delete_uploaded_file">
+ 
+ <label >file name</label>
+ 
+ <select name="file_names">
+ 
+  <?php
 if($query_run==true)
 {
-	if(mysqli_num_rows($query_run)>=1)
+	
 	{$count=1;
+		
+  if(mysqli_num_rows($query_run)>=1){
 	while($row=mysqli_fetch_assoc($query_run))
-	{echo $count.' '.$row['file_name'].'<br>';
+	{ ?><option>
+<option value="1"> <?php echo $count.' '.$row['file_name']?>
+
+</option> ?>
+<?php
 	     $count=$count+1;
+	 }
+	}
+	else
+
+	{
+		echo 'no file';
 	}
 }
-else
-{ echo 'no file ';}
+//else
+//{ echo 'no file ';}
 }else
 {echo 'error'.mysqli_error($link);}
 }
@@ -45,7 +65,6 @@ else
 
 ?>
 <form action="delete_uploaded_file.php" method="POST">
-<enter the name of file:<br>
-<input type ="text" name ="delete_file" maxlength="30">
+<!--<input type ="text" name ="delete_file" maxlength="30">--> 
 <input type ="submit" value="DELETE">
 </form>
