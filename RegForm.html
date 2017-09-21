@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EMS-AKGEC</title>
-    <link rel="stylesheet" type="text/css" href="emscss.css">
+    <link rel="stylesheet" type="text/css" href="css/emscss.css">
 
 <style>
 body{
@@ -14,13 +14,15 @@ body{
 
 </head>
 <body>
-<script src="emsjs.js">
+<script src="js/emsjs.js">
 </script>
 
 <script >
 var snd1= new Audio("sounds/welcomestudent.mp3");
 snd1.play();
 </script>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 <div class="header">
 <a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
@@ -32,7 +34,7 @@ snd1.play();
 <div class="register">
   <div class="aside3">
     <h2 style="color: red;text-align: center;"><b><u>Register Here</u></b></h2><br>
-    <form action="/action_page.php">
+    <form action="regi.php">
     <label style="text-align: left;"><b>Event</b></label>
     <select name="event" id="textdeco" required="required" >
                 <option>Select</option> 

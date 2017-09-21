@@ -7,7 +7,7 @@
 
 <style>
 body{
-       background: url("images/homepgbg.jpg") no-repeat center fixed; 
+       background: url("images/adminpgbg.jpg") no-repeat center fixed; 
        background-size: cover;
      }
 </style>
@@ -15,41 +15,28 @@ body{
 </head>
 
 <body>
+
 <div class="header">
 <a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
-  <h1 style="opacity: 1;">Event Management system</h1>
+  <h1>Event Management system</h1>
 </div>
+<div class="welcome">Welcome Super Admin</div>
 
 <div class="row">
 
-<div class="slider">
-<figure>
-<img src="images/Sample01.jpg" alt>
-<img src="images/Sample02.jpg" alt>
-<img src="images/Sample03.jpg" alt>
-<img src="images/Sample04.jpg" alt>
-</figure>
-</div>
-
-<div class="col-3a">
-  <div class="aside">
-      <h1>Students</h1>
-    <button onclick="location.href='RegForm.html'" class="button">Registration</button>
-  </div>
-</div>
-
-<div class="col-3a">
-  <div class="aside">
-    <h1 style="font-size:25px">Login</h1>
-
+<div class="register">
+  <div class="aside3">
+    <h2 style="color: darkgreen;text-align: center;"><b><u>New Admin Details</u></b></h2><br>
     <form action="/action_page.php">
-    <input type="radio" name="person" value="A" style="text-align: left"; required="required"/>Admin<br><input type="radio" name="person" value="C" required="required"/>Coordinator<br>
     <label><p style="text-align: left;"><b>Username</b><p></label>
     <input type="text" placeholder="Enter Username" name="uname" required>
     <label><p style="text-align: left;"><b>Password</b><p></p></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
-    <input type="submit" value="Login">
+    <input type="submit" value="Register">
     </form>
+
+    <br><br>
+    
   </div>
 </div>
 
