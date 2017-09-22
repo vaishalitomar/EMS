@@ -13,12 +13,8 @@ body{
 </style>
 
 </head>
-<body>
 
-<script >
-var snd1= new Audio("sounds/welcomecood.mp3");
-snd1.play();
-</script>
+<body>
 
 <div class="header">
 <a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
@@ -27,30 +23,27 @@ snd1.play();
   <h1 style="text-align: center;">Event Management system</h1>
 </div>
 <div class="welcome">Welcome Coordinator</div>
+
 <div class="row">
 
-<div class="requests">
-  <div class="aside">
-    <h1>Check Status</h1>
-    <button onclick="location.href='coordinator3.html'" class="button">Check</button>
-  </div>
-</div>
+<div class="register">
+  <div class="aside3">
+    <h2 style="color: darkgreen;text-align: center;"><b>Login</b></h2><hr><br>
+    <form action="/action_page.php">
+    <label><p style="text-align: left;"><b>Username</b><p></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label><p style="text-align: left;"><b>Password</b><p></p></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="submit" value="Login">
+    </form>
 
-<div class="requests">
-  <div class="aside">
-    <h1>New Event</h1>
-    <button onclick="location.href='NewEvent.html'" class="button">Apply</button>
-  </div>
-</div>
-
-<div class="requests">
-  <div class="aside">
-    <h1>Enter into your Society</h1>
-    <button onclick="location.href='coordinatorSociety1.html'" class="button">Enter</button>
+    <br><br>
+    
   </div>
 </div>
 
 </div>
+
 <div class="footer">
   <p>Thank You</p>
 </div>

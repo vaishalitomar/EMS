@@ -15,10 +15,10 @@ body{
 </head>
 <body>
 
-<script >
-var snd1= new Audio("sounds/welcomecood.mp3");
-snd1.play();
+<script src="js/emsjs.js">
 </script>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">&nbsp;^&nbsp;</button>
 
 <div class="header">
 <a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
@@ -27,33 +27,32 @@ snd1.play();
   <h1 style="text-align: center;">Event Management system</h1>
 </div>
 <div class="welcome">Welcome Coordinator</div>
+
 <div class="row">
 
-<div class="requests">
-  <div class="aside">
-    <h1>Check Status</h1>
-    <button onclick="location.href='coordinator3.html'" class="button">Check</button>
-  </div>
-</div>
+<div class="register">
+  <div class="aside3">
+    <h2 style="color: blue;text-align: center;"><b>Upload File</b></h2><br>
+    <form action="/action_page.php">
 
-<div class="requests">
-  <div class="aside">
-    <h1>New Event</h1>
-    <button onclick="location.href='NewEvent.html'" class="button">Apply</button>
-  </div>
-</div>
-
-<div class="requests">
-  <div class="aside">
-    <h1>Enter into your Society</h1>
-    <button onclick="location.href='coordinatorSociety1.html'" class="button">Enter</button>
+            <label style="text-align: left;"><b>Upload File:</b></label><br><br>
+            <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+            <label style="text-align: left;"><b>FILE NAME:</b></label>
+            <input type="text" name="venue" id="textdeco" placeholder="Enter file name" required="required"/>
+            <br><br> 
+            
+            <input style="width: 20%" type="submit" value="Upload File" name="submit">
+            <br><br>       
+    </form>
   </div>
 </div>
 
 </div>
+
 <div class="footer">
   <p>Thank You</p>
 </div>
+
 
 </body>
 </html>

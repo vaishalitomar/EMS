@@ -17,13 +17,29 @@ body{
 <body>
 <div class="header">
 <a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
-  <h1>Event Management system</h1>
+  <a ><img style="float: right;" src="images/lo.png"></a>
+  <a href="index.html" title="HOME"><img style="float: right;" src="images/home2.png"></a>
+  <h1 style="text-align: center;">Event Management system</h1>
 </div>
 <div class="welcome">Welcome Coordinator</div>
 <div class="row">
 
 <div class="register">
   <div class="aside">
+  <br>
+  <label style="text-align: left;"><b>Event</b></label>
+    <select name="event" id="textdeco" required="required" >
+                <option>Select</option> 
+                <option>A</option> 
+                <option>B</option> 
+                <option>C</option> 
+                <option>D</option> 
+                <option>E</option> 
+                <option>F</option> 
+    </select><br><br>
+            <label style="text-align: left;"><b>Name</b></label>
+            <input type="text" name="name" id="textdeco" placeholder="Enter Name" required="required" pattern="^[a-zA-Z]{1,40}$" />
+            <br><br>
     <h1>Do you Want to Abort the event ?</h1>
     <button class="button">Yes</button>
     <button class="button">No</button>

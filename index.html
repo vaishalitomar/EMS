@@ -7,7 +7,7 @@
 
 <style>
 body{
-       background: url("images/homepgbg.jpg") no-repeat center fixed; 
+       background: url("images/homepgbg2.jpg") no-repeat center fixed; 
        background-size: cover;
      }
 </style>
@@ -15,9 +15,12 @@ body{
 </head>
 
 <body>
+
 <div class="header">
 <a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
-  <h1 style="opacity: 1;">Event Management system</h1>
+  <a ><img style="float: right;" src="images/lo.png"></a>
+  <a href="index.html" title="HOME" ><img style="float: right;" src="images/home2.png"></a>
+  <h1 style="text-align: center;">Event Management system</h1>
 </div>
 
 <div class="row">
@@ -40,17 +43,33 @@ body{
 
 <div class="col-3a">
   <div class="aside">
-    <h1 style="font-size:25px">Login</h1>
+      <h1>Login</h1> 
+      <button id="btn" class="button">Login</button>
+      </div>
+</div>
 
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h1 style="text-align: center; font-size:25px">LOGIN</h1><hr>
+    </div>
+    <div class="modal-body">
     <form action="/action_page.php">
-    <input type="radio" name="person" value="A" style="text-align: left"; required="required"/>Admin<br><input type="radio" name="person" value="C" required="required"/>Coordinator<br>
+    <input type="radio" name="person" value="A" style="text-align: left"; required="required"/>Admin<br><input type="radio" name="person" value="C" required="required"/>Coordinator<br><input type="radio" name="person" value="A" style="text-align: left"; required="required"/>Super Admin<br>
     <label><p style="text-align: left;"><b>Username</b><p></label>
     <input type="text" placeholder="Enter Username" name="uname" required>
     <label><p style="text-align: left;"><b>Password</b><p></p></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
-    <input type="submit" value="Login">
+    <br>
+    <input style="margin-left: 15%;" type="submit" value="Login">
+    <br>
     </form>
+    </div>
   </div>
+
 </div>
 
 </div>
@@ -58,6 +77,7 @@ body{
 <div class="footer">
   <p>Thank You</p>
 </div>
-
+<script src="js/emsjs.js">
+</script>
 </body>
 </html>
