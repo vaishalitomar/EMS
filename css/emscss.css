@@ -49,7 +49,7 @@ hr{
 .aside {
     font-family: 'Open Sans', sans-serif;
     background-color: white;
-    padding: 15px;
+    padding: 20px;
     color: black;
     text-align: center;
     font-size: 15px;
@@ -57,6 +57,12 @@ hr{
     border: 1px solid black;
     border-radius: 8px;
     box-shadow: 5px 5px 25px black;
+    -webkit-transition: all 0.7s ease;
+transition: all 0.7s ease;
+}
+.aside:hover{
+    -webkit-transform:scale(1.1);
+transform:scale(1.1);
 }
 .aside2 {
     font-family: 'Open Sans', sans-serif;
@@ -69,6 +75,13 @@ hr{
     id black;
     border-radius: 8px;
     box-shadow: 5px 5px 25px black;
+    -webkit-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+
+}
+.aside2:hover{
+    -webkit-transform:scale(1.1);
+transform:scale(1.1);
 }
 .aside3 {
     font-family: 'Open Sans', sans-serif;
@@ -81,6 +94,13 @@ hr{
     border: 1px solid black;
     border-radius: 8px;
     box-shadow: 5px 5px 25px black;
+    -webkit-transition: all 0.7s ease;
+transition: all 0.7s ease;
+
+}
+.aside3:hover{
+    -webkit-transform:scale(1.1);
+transform:scale(1.1);
 }
 .footer {
     background-color:black;
