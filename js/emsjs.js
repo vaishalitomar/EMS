@@ -1,6 +1,6 @@
 var i = 0;
 var txt = 'Upcoming Events...';
-var speed = 100;
+var speed = 200;
 
 function typeWriter() {
   if (i < txt.length) {

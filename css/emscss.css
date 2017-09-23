@@ -59,6 +59,7 @@ hr{
     box-shadow: 5px 5px 25px black;
 }
 .aside2 {
+    font-family: 'Open Sans', sans-serif;
     background-color: white;
     padding: 15px;
     color: black;
@@ -70,6 +71,7 @@ hr{
     box-shadow: 5px 5px 25px black;
 }
 .aside3 {
+    font-family: 'Open Sans', sans-serif;
     background-color: white;
     padding-left: 5%;
     padding-right: 5%;
