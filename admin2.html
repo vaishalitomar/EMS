@@ -13,8 +13,7 @@ body{
 </head>
 <body>
 
-<script src="js/emsjs.js">
-</script>
+
 <button onclick="topFunction()" id="myBtn" title="Go to top">&nbsp;^&nbsp;</button>
 
 
@@ -103,8 +102,23 @@ body{
 </div>
 <div style="text-align: center;">
 <br><br>
-<button style="float: center" type="submit" class="button2">Save</button>
+<button style="float: center" type="submit" id="btn" class="button2">Save</button>
 <button style="float: center;" type="Cancel" class="button3">Cancel</button>
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h1 style="font-color:red; text-align: center; font-size:25px">Successfull</h1>
+      <!-- change here -->
+      <button style="float: center;" type="back" class="button3">Go Back</button>
+
+    </div>
+  </div>
+
+</div>
 <br>
 </div>
 </div>
@@ -112,5 +126,7 @@ body{
 <div class="footer">
   <p>Thank You</p>
 </div>
+<script src="js/emsjs.js">
+</script>
 </body>
 </html>

@@ -94,14 +94,8 @@ transform:scale(1.1);
     border: 1px solid black;
     border-radius: 8px;
     box-shadow: 5px 5px 25px black;
-    -webkit-transition: all 0.7s ease;
-transition: all 0.7s ease;
+}
 
-}
-.aside3:hover{
-    -webkit-transform:scale(1.1);
-transform:scale(1.1);
-}
 .footer {
     background-color:black;
     color: white;
