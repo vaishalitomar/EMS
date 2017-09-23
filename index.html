@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EMS-AKGEC</title>
     <link rel="stylesheet" type="text/css" href="css/emscss.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Passion+One|Raleway:700|Open+Sans" rel="stylesheet">
 <style>
 body{
        background: url("images/homepgbg2.jpg") no-repeat center fixed; 
@@ -14,13 +14,12 @@ body{
 
 </head>
 
-<body>
-
+<body onload="typeWriter()">
 <div class="header">
 <a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
-  <a ><img style="float: right;" src="images/lo.png"></a>
-  <a href="index.html" title="HOME" ><img style="float: right;" src="images/home2.png"></a>
-  <h1 style="text-align: center;">Event Management system</h1>
+  <a ><img class='imgpop' style="float: right;" src="images/lo.png"></a>
+  <a href="index.html" title="HOME" ><img class='imgpop' style="float: right;" src="images/home2.png"></a>
+  <h1 style="text-align: center;" >EVENT MANAGEMENT SYSTEM</h1>
 </div>
 
 <div class="row">
@@ -34,19 +33,23 @@ body{
 </figure>
 </div>
 
+
+<h1 style="color:white; font-size: 50px" id="demo"></h1>
 <div class="col-3a">
   <div class="aside">
-      <h1>Students</h1>
+
+      <h1>STUDENTS</h1>
     <button onclick="location.href='RegForm.html'" class="button">Registration</button>
   </div>
 </div>
 
 <div class="col-3a">
   <div class="aside">
-      <h1>Login</h1> 
+      <h1>LOGIN</h1> 
       <button id="btn" class="button">Login</button>
       </div>
 </div>
+
 
 <div id="myModal" class="modal">
 
@@ -58,13 +61,13 @@ body{
     </div>
     <div class="modal-body">
     <form action="/action_page.php">
-    <input type="radio" name="person" value="A" style="text-align: left"; required="required"/>Admin<br><input type="radio" name="person" value="C" required="required"/>Coordinator<br><input type="radio" name="person" value="A" style="text-align: left"; required="required"/>Super Admin<br>
-    <label><p style="text-align: left;"><b>Username</b><p></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-    <label><p style="text-align: left;"><b>Password</b><p></p></label>
+    <input type="radio" name="person" value="A" style="text-align: left"; required="required"/>Admin<br><input type="radio" name="person" value="C" required="required"/>Coordinator<br><input type="radio" name="person" value="A" style="text-align: left"; required="required"/>Super Admin<br><br>
+    <label style="text-align: left;"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required><br><br>
+    <label style="text-align: left;"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
     <br>
-    <input style="margin-left: 15%;" type="submit" value="Login">
+    <input style="margin-left: 20%;" type="submit" value="Login">
     <br>
     </form>
     </div>
