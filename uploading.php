@@ -4,25 +4,25 @@ if(!empty($_SESSION['username']))
    {
     if(!empty($_SESSION['society_id']))
 	    {
-        if(isset($_FILES['file']['name'])&&isset($_POST['rename']))
+          if(isset($_FILES['file']['name'])&&isset($_POST['rename']))
          {
           $name=$_FILES['file']['name'];$rename=$_POST['rename'];$society_id=$_SESSION['society_id'];$society_name=$_SESSION['society_name'];
-           if(!empty($name)&&!empty($rename))
+               if(!empty($name)&&!empty($rename))
              {
               $offset=0; 
-                while($count=strpos($name,'.',$offset))
+                   while($count=strpos($name,'.',$offset))
                 {
                  $offset=$count+1;}
                 $ext= strtoupper(substr($name,$offset));
 
-                if(($ext=='PDF')||($ext=='TXT')||($ext=='PNG')||($ext=='JPEG')||($ext=='JPG'))
+                     if(($ext=='PDF')||($ext=='TXT')||($ext=='PNG')||($ext=='JPEG')||($ext=='JPG'))
                  {
                    $offset=0; 
-                    while($count=strpos($rename,'.',$offset))
+                        while($count=strpos($rename,'.',$offset))
                   {
                    $offset=$count+1;}
                   $ext= strtoupper(substr($rename,$offset));
-                  if(($ext=='PDF')||($ext=='TXT')||($ext=='PNG')||($ext=='JPEG')||($ext=='JPG'))
+                          if(($ext=='PDF')||($ext=='TXT')||($ext=='PNG')||($ext=='JPEG')||($ext=='JPG'))
     
                   	{  
                       $query="INSERT INTO `upload`(`file_name`,`society_id`) VALUES('$rename','$society_id')";
