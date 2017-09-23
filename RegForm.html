@@ -48,8 +48,12 @@ snd1.play();
             <label style="text-align: left;"><b>Name</b></label>
             <input type="text" name="name" id="textdeco" placeholder="Enter Name" required="required" pattern="^[a-zA-Z]{1,40}$" />
             <br><br>
+            
             <label style="text-align: left;"><b>Gender</b></label>
-            <input type="radio" name="gen" value="M" style="" required="required"/>Male<input type="radio" name="gen" value="F" required="required"/>Female
+            <input type="radio" value="M" id="male" name="gen" required="required"/>
+            <label for="male" class="radio" >Male</label>
+            <input type="radio" value="F" id="female" name="gen" required="required"/>
+            <label for="female" class="radio">Female</label>
             <br><br>
             <label style="text-align: left;"><b>Email</b></label>
             <input type="email" name="email" id="textdeco" placeholder="Enter Email" required="required"/>
@@ -63,8 +67,13 @@ snd1.play();
             <label style="text-align: left;"><b>Class</b></label>    
             <input type="text" name="state" id="textdeco" required="required" placeholder="Enter Class" pattern="^[a-zA-Z]{3,20}$" />
             <br><br>
-            <label style="text-align: left;"><b>Hosteler</b></label>
-            <input type="radio" name="check" value="y" required="required"/>Yes<input type="radio" name="check" value="n" required="required"/>No
+            
+            <label style="text-align: left;"><b>Hostler</b></label>
+            <input type="radio" value="y" id="Y" name="check" required="required"/>
+            <label for="Y" class="radio" >Yes</label>
+            <input type="radio" value="N" id="N" name="check" required="required"/>
+            <label for="N" class="radio">No</label>
+
             <br><br>
             <label style="text-align: left;"><b>Upload document(if any):</b></label><br>
             <input type="file" name="fileToUpload" id="fileToUpload"><br><br>

@@ -47,9 +47,11 @@ body{
             <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
             <input style="width: 20%" type="submit" value="Upload Image" name="submit">
             <br><br>
-            <input type="checkbox" name="agree" value="agree" />
-            <label style="text-align: left;"><b>Do yo agree our Terms And Conditions</b></label>
-             <div style="text-align: center;">
+            
+            <input type="checkbox" value="YES" id="agree" name="agree" required="required"/>
+            <label for="agree" class="checkbox"><b>Do you Agree our terms and Conditions ?</b></label><br>
+
+            <div style="text-align: center;">
             <br><br>
             <button type="submit" class="button2">Submit</button>
            <button type="reset" class="button3">Reset</button>

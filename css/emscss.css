@@ -64,7 +64,7 @@ hr{
     padding: 15px;
     color: black;
     font-size: 25px;
-    opacity: 0.8;
+    opacity: 0.9;
     border: 1px sol
     id black;
     border-radius: 8px;
@@ -77,7 +77,7 @@ hr{
     padding-right: 5%;
     color: black;
     font-size: 25px;
-    opacity: 0.8;
+    opacity: 0.9;
     border: 1px solid black;
     border-radius: 8px;
     box-shadow: 5px 5px 25px black;
@@ -303,7 +303,7 @@ tr:nth-child(odd){background-color: white}
   font-family: 'Permanent Marker';
   font-size: 40px;
   background-color: black;
-  opacity: 0.7;
+  opacity: 0.8;
   color: white;
   padding:5px;
   cursor: pointer;
@@ -388,3 +388,103 @@ tr:nth-child(odd){background-color: white}
 .modal-body {
 font-size: 20px;
     padding: 2px 16px;opacity: 1;}
+
+/*radio*/
+
+input[type=radio] {
+  visibility: hidden;
+}
+
+label.radio {
+    cursor: pointer;
+  text-indent: 35px;
+  overflow: visible;
+  display: inline-block;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+label.radio:before {
+  background: grey;
+  content:'';
+  position: absolute;
+  top:2px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
+
+label.radio:after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 0.5em;
+    height: 0.25em;
+    background: transparent;
+    top: 7.5px;
+    left: 4.5px;
+    border: 3px solid #ffffff;
+    border-top: none;
+    border-right: none;
+
+    -webkit-transform: rotate(-0deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+input[type=radio]:checked + label:after {
+    opacity: 1;
+}
+
+/*checkbox*/
+
+input[type=checkbox] {
+  visibility: hidden;
+}
+
+label.checkbox {
+    cursor: pointer;
+  text-indent: 35px;
+  overflow: visible;
+  display: inline-block;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+label.checkbox:before {
+  background: grey;
+  content:'';
+  position: absolute;
+  top:2px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 30%;
+}
+
+label.checkbox:after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 0.5em;
+    height: 0.25em;
+    background: transparent;
+    top: 7.5px;
+    left: 4.5px;
+    border: 3px solid #ffffff;
+    border-top: none;
+    border-right: none;
+
+    -webkit-transform: rotate(-0deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+input[type=checkbox]:checked + label:after {
+    opacity: 1;
+}
