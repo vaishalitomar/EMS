@@ -1,5 +1,6 @@
 <?php
 require('db_connection.php');
+include('search.php');
 ?>
 
 <!DOCTYPE html>
@@ -65,10 +66,11 @@ echo mysqli_errno($connection).":".mysqli_error($connection);
 
           
 <td>
-          <select name="status[]">
-          <option value='1'>Pending</option>
-          <option value='2'>Approve</option>
-           <option value='3'>Cancel</option> 
+          <select name="status[]" >
+          <option value='1'><?php $query = mysqli_query($connection,"SELECT event_status FROM `co-ordinator` WHERE event_id='$k'");   $row = mysqli_fetch_array($query); if($row['event_status']==2){echo"pending";}if($row['event_status']==3){echo"approve";}if($row['event_status']==4){echo"cancel";}?></option>
+          <option value='2'>Pending</option>
+          <option value='3'>Approve</option>
+           <option value='4'>Cancel</option> 
            </select>
            
            </td>

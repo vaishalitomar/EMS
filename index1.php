@@ -43,7 +43,8 @@ if($designation=="1")
 {
 $query = mysqli_query($connection,"SELECT * from login where password='$password' AND username='$username' AND designation='1'");
 $rows = mysqli_num_rows($query);
-if ($rows == 1 ) {
+if ($rows == 1 ) 
+{
  
 header("location: coordinator1.html");  
 }
