@@ -1,42 +1,60 @@
 <?php
 include('db_connection.php');
-if(!empty($_SESSION['username']))
+session_start();
+if(isset($_SESSION['name']))
 {
-	if(($_SESSION['position']=='A')||!empty($_SESSION['society_id']))
-	{ 
+	
+	 
 		if(isset($_POST['event_name']))
        {
        	$event_name=$_POST['event_name'];
           if(!empty($event_name))
-             $society_id=mysqli_real_escape_string($connection,$_SESSION['society_id']);
+           { 
 	         if(isset($_POST['yes']))
-	           {
-                { $query=" DELETE FROM `event` WHERE (`event_name`='$event_name')";
-                    $query_run=mysqli_query($connection,$query);
-		          if($query_run==true)
+	           
+                { 
+
+                                
+                   $query1=mysqli_query($connection, "SELECT * FROM `event` WHERE `event_name`='$event_name'");
+                      $rows=mysqli_num_rows($query1);
+                      if($rows>0)
+              {
+                        $row=mysqli_fetch_array($query1);
+                        $event_id=$row['event_id'];
+
+                }
+
+                  $query2 = "DELETE FROM `registrations` WHERE (`event_id` = '$event_id')";
+                $query_run2=mysqli_query($connection,$query2);
+                 $query=" DELETE FROM `event` WHERE (`event_name`='$event_name')";
+                   $query_run=mysqli_query($connection,$query);
+
+             
+
+		          if((($query_run)&&($query_run2))==true)
 		         {
 			      {
-			      	header('location:abort1.php');
+              
+			      	header('location:success.php');
 			      }
                  }
 			    else
 					 { echo 'invalid event name or no such event';}
 			    }
 	           }
-             else
-                { echo 'invalid entry dont try to delete of another society';}
 
+             else
+                { echo 'invalid entry dont try to delete of another society event';}
+           
         }
-        else 
-          {echo 'plz fill all the field';}
+        
     }
-      else
-	    { header('location:go_to.php');}
-}
+     
+
 
   else
-     {header('location:login.php');}
-
+     //{header('location:index.php');}
+{echo "noooo";}
 
 ?>
 	
