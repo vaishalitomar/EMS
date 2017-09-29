@@ -95,7 +95,8 @@ body{
 
 <script src="js/emsjs.js">
 </script>
-
+<script src="validation.js">
+</script>
 <button onclick="topFunction()" id="myBtn" title="Go to top">&nbsp;^&nbsp;</button>
 
 <div class="header">
@@ -114,12 +115,14 @@ body{
    <div class="register">
      <div class="aside3">
        <h2 style="color: blue;text-align: center;"><b>Upload File</b></h2><br>
-         <form action="uploading.php" method = "post" enctype="multipart/form-data">
+         <form id="upload" action="" method = "post" enctype="multipart/form-data" onsubmit="return validateupload();">
 
             <label style="text-align: left;"><b>Upload File:</b></label><br><br>
+            <p id="file"></p>
             <input type="file" name="file" id="fileToUpload"><br><br>
             <label style="text-align: left;"><b>RENAME FILE:</b></label>
-            <input type="text" name="rename" id="textdeco" placeholder="Enter file name" required="required"/>
+            <p id="rname"></p>
+            <input type="text" name="rename" id="textdeco" placeholder="Enter file name"/>
             <br><br> 
             
             
