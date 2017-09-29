@@ -2,7 +2,7 @@
 require('db_connection.php');
 session_start();
 
-$usernameerr=$passworderr="";
+$usernameerr=$passworderr=$matchnotfound="";
 
 $msg="";
 $msg1="";
@@ -27,13 +27,13 @@ if(!isset($_SESSION["name"]))
 
  $password=mysqli_real_escape_string($connection, $_POST['psw']);
 
- 
+ $_SESSION["name"]=$username;
  $query=mysqli_query($connection, "SELECT * FROM login WHERE username='$username' AND password='$password'");
 
  $rows=mysqli_num_rows($query);
  if($rows>=1)
  {
-  $_SESSION["name"]=$username;
+  
   $row=mysqli_fetch_array($query);
   $d=$row['position'];
   if($d=="0")
@@ -51,12 +51,7 @@ if(!isset($_SESSION["name"]))
 }
 else
 {
-  ?>
-  <script >
-    var wrong=document.getElementById("name");
-    wrong.innerHTML="WRONG USERNAME OR PASSWORD";
-  </script>
-  <?php
+  
 }
 }
 
@@ -79,6 +74,7 @@ else
      background: url("images/homepgbg2.jpg") no-repeat center fixed; 
      background-size: cover;
    }
+   .error {color: #FF0000;}
  </style>
 
 </head>
@@ -153,7 +149,7 @@ else
           <form id="indexform" action="" method="post" onsubmit="return validateonsubmit();" >    
            <p id="name"></p>
             <label style="text-align: left;"><b>USERNAME</b></label>
-            <input type="text" placeholder="Enter Username" name="uname"  > <br><br>
+            <input type="text" placeholder="Enter Username" name="uname"  ><span class="error">*<?php echo $matchnotfound ?></span> <br><br>
             <p id="pass"></p>
             <label style="text-align: left;"><b>PASSWORD</b></label>
 
