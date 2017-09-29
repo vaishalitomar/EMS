@@ -73,6 +73,7 @@ body{
 </head>
 
 <body>
+<script src="validation.js"></script>
 <div class="header">
 <a href="http://www.akgec.in/" title="AKGEC WEBSITE" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
   <a href="index2.php" title="LOGOUT"><img class='imgpop' style="float: right;" src="images/lo.png"></a>
@@ -88,10 +89,11 @@ body{
 <div class="register">
   <div class="aside">
     <h1>Do you Want to Abort the event ?</h1>
-      <form action="abort2.php" method="post">
+      <form id="abort" action="abort2.php" method="post" onsubmit="return abortonsubmit()">
+      <p id="name"></p>
             <input type="text" placeholder="Event name" name ="event_name"><br><br>
-               <button name="yes" class="button">Yes</button>
-               <button name = "no" class="button">No</button>
+               <button name="yes" class="button" name="yes">Yes</button>
+               <button name = "no" class="button" name="no">No</button>
       </form>
      <br>
   </div>
