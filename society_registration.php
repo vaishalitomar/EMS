@@ -7,27 +7,36 @@ if(isset($_SESSION["name"]))
   {
     $soc_name=mysqli_real_escape_string($connection, $_POST["name"]);
     $cod_name=mysqli_real_escape_string($connection, $_POST["codname"]);
-    $email=mysqli_real_escape_string($connection, $_POST["email"]);
+ $email=mysqli_real_escape_string($connection, $_POST["email"]);
     $password=mysqli_real_escape_string($connection, $_POST["password"]);
     $confirm_pass=mysqli_real_escape_string($connection, $_POST["confirm_password"]);
+
     $cod_id=rand(10000, 20000);
-    $soc_id=rand(10000, 20000);
+    
+  $soc_id=rand(10000, 20000);
+  if($confirm_pass==$password)
+  {
+  $query=mysqli_query($connection,"INSERT INTO society(`society_name`, `society_id`) VALUES('$soc_name', '$soc_id')");
+  $query1=mysqli_query($connection, "INSERT INTO coordinator(`coordinator_id`, `society_id`, `coordiantor_name`)
+   VALUES('$cod_id', '$soc_id', '$cod_name')");
+  $query3=mysqli_query($connection, "INSERT INTO login(`username`, `password`, `position`, `email`) VALUES('$cod_name', '$password', '1', '$email')");
+    if(!$query||!$query1||!$query3)
+    {
+      echo "cannot register";
+      echo mysqli_error($connection);
+    }
+    else
+    {
+      echo "successfully registered";
+      header('location:successfullyregistered.php');
+    }
+  }
   
 
-    
-        $query=mysqli_query($connection,"INSERT INTO society(`society_name`, `society_id`) VALUES('$soc_name', '$soc_id')");
-        $query1=mysqli_query($connection, "INSERT INTO coordinator(`coordinator_id`, `society_id`, `coordiantor_name`)VALUES('$cod_id', '$soc_id', '$cod_name')");
-        $query3=mysqli_query($connection, "INSERT INTO login(`username`, `password`, `position`, `email`) VALUES('$cod_name', '$password', '1', '$email')");
 
-           if(!$query||!$query1||!$query3)
-            {
-              header('location:tryagain.php');
-            }
-           else
-           {
-             header('location:successfullyregistered.php');
-           }
-      }
+  
+  
+}
 
 mysqli_close($connection);
  ?>
@@ -72,29 +81,28 @@ mysqli_close($connection);
     <div class="register">
       <div class="aside3">
         <h2 style="color: darkgreen;text-align: center;"><b>NEW SOCIETY DETAILS</b></h2><hr><br>
-        
- <form id="registration" action="" method="post" onsubmit="return validate();">
-          <p id="socname"></p>
+        <form action="" id="socregistration" method="post" onsubmit="return validatesoc_onsubmit();">
+          <label style="text-align: left;"><b>Society Name:</b></label>
           <input type="text" name="name" id="society_name" placeholder="Enter Society Name"  pattern="^[a-zA-Z]{1,40}$" />
           <br><br>
-          <p id="codname1"></p>
+          <p id="socname"></p>
           <label style="text-align: left;"><b>Coordinator Name:</b></label>
-          <input type="text" name="codname" id="coordinatorname" placeholder="Coordinator name" />
+          <input type="text" name="codname" id="coordinatorname" placeholder="Coordinator name" onfocus="return validatesoconclick();" />
           <br><br>
-            <p id="password"></p>
+<p id="codname1"></p>
             <label style="text-align: left;"><b>Password:</b></label>
-            <input type="password" name="password" id="pass" placeholder="password" />
+            <input type="password" name="password" id="pass" placeholder="password" onfocus ="return validatesoconclick();" />
+            <br><br>
+            <p id="password"></p>
+            <label style="text-align: left;"><b>Confirm Password:</b></label>
+            <input type="password" name="confirm_password" id="Conf_pass" placeholder="confirm password" onfocus="return validatesoconclick();"/>
             <br><br>
             <p id="confpass"></p>
-            <label style="text-align: left;"><b>Confirm Password:</b></label>
-            <input type="password" name="confirm_password" id="Conf_pass" placeholder="confirm password" />
+             <label style="text-align: left;"><b>Email:</b></label>
+            <input type="email" name="email" id="email1" placeholder="email" onfocus ="return validatesoconclick();" />
             <br><br>
             <p id="email"></p>
-             <label style="text-align: left;"><b>Email:</b></label>
-            <input type="email" name="email" id="email1" placeholder="email" />
-            <br><br>
-            
-            <input type="checkbox" value="YES" id="agree" name="agree" />
+            <input type="checkbox" value="YES" id="agree" name="agree" onfocus="return validatesoconclick();"/>
             <label for="agree" class="checkbox" ><b>Do you Agree our terms and Conditions ?</b></label><br>
 
             <div style="text-align: center;">
