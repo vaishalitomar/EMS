@@ -1,42 +1,49 @@
 <?php
 require('db_connection.php');
 session_start();
+$errsociety_name=$errcoordinator_name=$erremail="";
 if(isset($_SESSION["name"]))
 {
   if(isset($_POST['submit']))
   {
     $soc_name=mysqli_real_escape_string($connection, $_POST["name"]);
+    if (!preg_match("/^[a-zA-Z ]*$/",$soc_name)) {
+      $errsociety_name = "*Only letters and white space allowed"; 
+      $error=1;
+    }
     $cod_name=mysqli_real_escape_string($connection, $_POST["codname"]);
- $email=mysqli_real_escape_string($connection, $_POST["email"]);
+    if (!preg_match("/^[a-zA-Z ]*$/",$cod_name)) {
+      $errcoordinator_name = "*Only letters and white space allowed"; 
+      $error=1;
+    }
+    $email=mysqli_real_escape_string($connection, $_POST["email"]);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $erremail = "*Invalid email format"; 
+      $error=1;
+    }
     $password=mysqli_real_escape_string($connection, $_POST["password"]);
     $confirm_pass=mysqli_real_escape_string($connection, $_POST["confirm_password"]);
-
     $cod_id=rand(10000, 20000);
+    $soc_id=rand(10000, 20000);
+  
+if($error!=1)
+{
     
-  $soc_id=rand(10000, 20000);
-  if($confirm_pass==$password)
-  {
-  $query=mysqli_query($connection,"INSERT INTO society(`society_name`, `society_id`) VALUES('$soc_name', '$soc_id')");
-  $query1=mysqli_query($connection, "INSERT INTO coordinator(`coordinator_id`, `society_id`, `coordiantor_name`)
-   VALUES('$cod_id', '$soc_id', '$cod_name')");
-  $query3=mysqli_query($connection, "INSERT INTO login(`username`, `password`, `position`, `email`) VALUES('$cod_name', '$password', '1', '$email')");
-    if(!$query||!$query1||!$query3)
-    {
-      echo "cannot register";
-      echo mysqli_error($connection);
-    }
-    else
-    {
-      echo "successfully registered";
-      header('location:successfullyregistered.php');
-    }
-  }
-  
+        $query=mysqli_query($connection,"INSERT INTO society(`society_name`, `society_id`) VALUES('$soc_name', '$soc_id')");
+        $query1=mysqli_query($connection, "INSERT INTO coordinator(`coordinator_id`, `society_id`, `coordiantor_name`)VALUES('$cod_id', '$soc_id', '$cod_name')");
+        $query3=mysqli_query($connection, "INSERT INTO login(`username`, `password`, `position`, `email`) VALUES('$cod_name', '$password', '1', '$email')");
 
-
-  
-  
+           if(!$query||!$query1||!$query3)
+            {
+              header('location:tryagain.php');
+            }
+           else
+           {
+             header('location:successfullyregistered.php');
+           }
 }
+      }
+    
 
 mysqli_close($connection);
  ?>
@@ -53,6 +60,7 @@ mysqli_close($connection);
      background: url("images/adminpgbg.jpg") no-repeat center fixed; 
      background-size: cover;
    }
+   .error {color: #FF0000;}
  </style>
 
 </head>
@@ -81,28 +89,30 @@ mysqli_close($connection);
     <div class="register">
       <div class="aside3">
         <h2 style="color: darkgreen;text-align: center;"><b>NEW SOCIETY DETAILS</b></h2><hr><br>
-        <form action="" id="socregistration" method="post" onsubmit="return validatesoc_onsubmit();">
-          <label style="text-align: left;"><b>Society Name:</b></label>
-          <input type="text" name="name" id="society_name" placeholder="Enter Society Name"  pattern="^[a-zA-Z]{1,40}$" />
-          <br><br>
+        
+ <form id="registration" action="" method="post" onsubmit="return validate();">
+           <label style="text-align: left;"><b>Society Name:</b></label><span class="error"><?php echo $errsociety_name; ?></span>
           <p id="socname"></p>
-          <label style="text-align: left;"><b>Coordinator Name:</b></label>
-          <input type="text" name="codname" id="coordinatorname" placeholder="Coordinator name" onfocus="return validatesoconclick();" />
+          <input type="text" name="name" id="society_name" placeholder="Enter Society Name"  />
           <br><br>
-<p id="codname1"></p>
-            <label style="text-align: left;"><b>Password:</b></label>
-            <input type="password" name="password" id="pass" placeholder="password" onfocus ="return validatesoconclick();" />
-            <br><br>
+          <p id="codname1"></p>
+          <label style="text-align: left;"><b>Coordinator Name:</b></label><span class="error"><?php echo $errcoordinator_name; ?></span>
+          <input type="text" name="codname" id="coordinatorname" placeholder="Coordinator name" />
+          <br><br>
             <p id="password"></p>
-            <label style="text-align: left;"><b>Confirm Password:</b></label>
-            <input type="password" name="confirm_password" id="Conf_pass" placeholder="confirm password" onfocus="return validatesoconclick();"/>
+            <label style="text-align: left;"><b>Password:</b></label>
+            <input type="password" name="password" id="pass" placeholder="password" />
             <br><br>
             <p id="confpass"></p>
-             <label style="text-align: left;"><b>Email:</b></label>
-            <input type="email" name="email" id="email1" placeholder="email" onfocus ="return validatesoconclick();" />
+            <label style="text-align: left;"><b>Confirm Password:</b></label>
+            <input type="password" name="confirm_password" id="Conf_pass" placeholder="confirm password" />
             <br><br>
             <p id="email"></p>
-            <input type="checkbox" value="YES" id="agree" name="agree" onfocus="return validatesoconclick();"/>
+             <label style="text-align: left;"><b>Email:</b></label><span class="error"><?php echo $erremail ?></span>
+            <input type="text" name="email" id="email1" placeholder="email" />
+            <br><br>
+            
+            <input type="checkbox" value="YES" id="agree" name="agree" />
             <label for="agree" class="checkbox" ><b>Do you Agree our terms and Conditions ?</b></label><br>
 
             <div style="text-align: center;">
