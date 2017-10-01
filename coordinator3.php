@@ -4,6 +4,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EMS-AKGEC</title>
+<link rel="icon" href="images/logoic.ico">
     <link rel="stylesheet" type="text/css" href="css/emscss.css">
 
 <style>
@@ -16,37 +17,44 @@ body{
 </head>
 
 <body>
-<div class="header">
+<button onclick="topFunction()" id="myBtn" title="Go to top">&nbsp;^&nbsp;</button>
+<!--
 <form action=index2.php method="post">
 <button  style="float: center;" type="logout" class="button3" name="logout" action="index2.php">logout</button>
 </form>
-<a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
-  <h1>Event Management system</h1>
+-->
+<div class="header">
+<a href="http://www.akgec.in/" title="AKGEC WEBSITE" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
+  <a href="logout.php" title="LOGOUT"><img class='imgpop' style="float: right;" src="images/lo.png"></a>
+  <a  href = "coordinator_frontpage.php" title="HOME" ><img class='imgpop' style="float: right;" src="images/home2.png"></a>
+ <div style="text-align: center;">
+  <img  src="images/headerlogo.png">
+  <h1 style="color: #00ABDC">EVENT MANAGEMENT SYSTEM</h1>
+  </div>
 </div>
 <div class="welcome">Welcome Coordinator</div>
 <div class="row">
-<div class="register">
+
+<div class="requests">
   <div class="aside">
-    <h1>STATUS:</h1>
-    <h2 style="color: blue">PENDING</h2>
-    <h2 style="color: green" >ACTIVE</h2>
-    <h2 style="color: red" >CANCELLED</h2>
+    <h1 style="color:green">APPROVED EVENTS</h1>
     
   </div>
 </div>
+
 <div style="overflow-x:auto;opacity: 0.8;padding: 20px;">
-  <table>
+  
   
 <?php
   
-echo "<table border ='3'>
+/*echo "<table border ='3'>
 <tr>
 <th>EVENT NAME</th>
 <th>EVENT DATE</th>
 <th>EVENT TIME</th>
 <th>EVENT VENUE</th>
 
-</tr>";
+</tr>";*/
 
    
     
@@ -59,8 +67,16 @@ if(isset($_SESSION["name"]))
   $query1=mysqli_query($connection,$query);
   if($query1)
   {
-    if(mysqli_num_rows($query1)>=1)
+    if($query1==true)
     {
+      echo "<table border ='3'>
+<tr>
+<th>EVENT NAME</th>
+<th>EVENT DATE</th>
+<th>EVENT TIME</th>
+<th>EVENT VENUE</th>
+
+</tr>";
       $count=1;
     while($row=mysqli_fetch_array($query1))
     { 
@@ -72,8 +88,9 @@ if(isset($_SESSION["name"]))
  
      
      
-          $count=$count+1;
-           echo "<table><tr>";
+         
+          // echo "<table><tr>";
+            $count=$count+1;
           
     }
     }
@@ -96,19 +113,21 @@ else
 ?>
 
 
-</table>
+
     
     
      
     
     
-  </table>
+  
 </div>
 </div>
 
 <div class="footer">
   <p>Thank You</p>
 </div>
+<script src="js/emsjs.js">
+</script>
 
 </body>
 </html>
