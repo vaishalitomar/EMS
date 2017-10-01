@@ -8,9 +8,9 @@ if(isset($_SESSION["name"]))
   
     {
       
-   if(isset($_POST['submit'])) 
-{
-  $event=mysqli_real_escape_string($connection,$_POST['event']);
+       if(isset($_POST['submit'])) 
+         {
+               $event=mysqli_real_escape_string($connection,$_POST['event']);
   
   
             {
@@ -18,56 +18,53 @@ if(isset($_SESSION["name"]))
                       $query1=mysqli_query($connection, "SELECT * FROM `event` WHERE `event_name`='$event'");
                       $rows=mysqli_num_rows($query1);
                       if($rows>0)
-        {
+              {
                         $row1=mysqli_fetch_array($query1);
                         $event_id=$row1['event_id'];
 
-  $query="SELECT * FROM `registrations` WHERE(`event_id`='$event_id')";
-$query_run=mysqli_query($connection,$query);
-if($query_run==true)
-{echo "<table border ='3'>
-<tr>
-<th>STUDENT NAME</th>
-<th>STUDENT NO</th>
-<th>BRANCH</th>
-<th>YEAR</th>
-<th>CONTACT NO</th>
-<th>EMAIL </th>
-</tr>";
-//if(mysqli_num_rows($query_run)>=1)
-$count=0;
-while($row=mysqli_fetch_assoc($query_run))
-{ echo "<tr>"; 
-  echo "<td>".$row['name']."</td>";
-  echo "<td>".$row['student_no']."</td>";
-  echo "<td>".$row['branch']."</td>";
-  echo "<td>".$row['year']."</td>";
-  echo "<td>".$row['contact_no']."</td>";
-  echo "<td>".$row['email']."</td>";
-//echo $count.$row['name'].' '.$row['student_no'].' '.$row['branch'].' '.$row['year'].' '.$row['email'].' '.$row['contact_no'].' '.$row['hostler'].'<br>';
-$count=$count+1;
-}
-if($count == 0){
-   'no student yet registered for this';
+                      $query="SELECT * FROM `registrations` WHERE(`event_id`='$event_id')";
+                      $query_run=mysqli_query($connection,$query);
+                      if($query_run==true)
+                   {
+                        echo "<table border ='3'>
+                      <tr>
+                      <th>STUDENT NAME</th>
+                      <th>STUDENT NO</th>
+                      <th>BRANCH</th>
+                      <th>YEAR</th>
+                      <th>CONTACT NO</th>
+                      <th>EMAIL </th>
+                      </tr>";
 
-}
-}
+                         $count=0;
+                          while($row=mysqli_fetch_assoc($query_run))
+                      {
+                             echo "<tr>"; 
+                             echo "<td>".$row['name']."</td>";
+                             echo "<td>".$row['student_no']."</td>";
+                             echo "<td>".$row['branch']."</td>";
+                             echo "<td>".$row['year']."</td>";
+                             echo "<td>".$row['contact_no']."</td>";
+                             echo "<td>".$row['email']."</td>";
 
+                         $count=$count+1;
+                      }
+                        if($count == 0)
+                        {
+                          echo 'no student yet registered for this';
 
-}
-else
-{ echo 'no student regisrter for this';}
-}
-
-}
-}
+                        }
+                    }
 
 
-
-
+              }
+              else
+         {
+          echo 'no student regisrter for this';}
+         }
   
-  
-
+      }
+  }
 
 ?>
 <!DOCTYPE html>
@@ -153,57 +150,10 @@ if($query_run2==true)
     echo 'no file';
   }
 }}?>
+</select>
 <input style="width: 15%" type="submit" name = "submit" value = "submit" >
 </form>
-  <!--<table>
-    <tr>
-      <th>Student number</th>
-      <th>Student Name</th>
-      <th>Gender</th>
-      <th>Email</th>
-      <th>Mobile No.</th>
-      <th>Class</th>
-      <th>Hostler</th>
-      <th>Document uploaded</th>
-    </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Smith</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td> 
-      <button type="submit" class="button2">View</button>
-      </td>
-    </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Smith</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td> 
-      <button type="submit" class="button2">View</button>
-      </td>
-    </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Smith</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td> 
-      <button type="submit" class="button2">View</button>
-      </td>
-    </tr>
-    
-  </table> -->
+  
 </div>
 </div>
 
