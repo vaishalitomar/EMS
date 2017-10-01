@@ -1,43 +1,46 @@
 <?php
 require('db_connection.php');
+session_start();
+if(isset($_SESSION["name"]))
+{
 $errevent_name=$errsociety_name=$errevent_date=$errevent_timing=$errevent_venue=$errsociety_id=$errabout_event=$errevent_category="";
 
 
 if(isset($_POST['submit']))
 {
   $event_name = mysqli_real_escape_string($connection,$_POST['event_name']);
+    if (!preg_match("/^[a-zA-Z ]*$/",$event_name)) {
+      $errevent_name = "Only letters and white space allowed";
+      $error=1; 
+    }
   $event_category =mysqli_real_escape_string($connection,$_POST['event_category']);
   $event_date = mysqli_real_escape_string($connection,$_POST['event_date']);
+  $regex = '/^((([1-2][0-9])|([1-9]))/([2])/[0-9]{4})|((([1-2][0-9])|([1-9])|(3[0-1]))/((1[0-2])|([3-9])|([1]))/[0-9]{4})$/';
+    if(preg_match($regex, $event_date)) {
+         $errevent_date="invalid date format";
+         $error=1;
+       }
   $event_timing =mysqli_real_escape_string($connection,$_POST['event_timing']);
   $event_ist =mysqli_real_escape_string($connection,$_POST['event_ist']);
   $event_venue = mysqli_real_escape_string($connection,$_POST['event_venue']);
+  if (!preg_match("/^[a-zA-Z0-9 ]*$/",$event_venue)) {
+      $errevent_venue = "Only letters,numbers and white space allowed";
+      $error=1;
+    }
   
-  $about_event =mysqli_real_escape_string($connection,$_POST['about_event']);
    $society_name=mysqli_real_escape_string($connection, $_POST['society_name']);
 
-   if(empty($society_name))
-       {$errsociety_name="please fill the society name ";$error=1;}
-   if(empty($event_name))
-       {$errevent_name="please fill the  event name ";$error=1;}
-   if(empty($society_name))
-       {$errsociety_name="please fill the society name";$error=1;}
-   if(empty(($event_date)))
-       {$errevent_date="please fill the event date";$error=1;}
-
-   if(empty(($event_timing)&&($event_ist)))
-       {$errevent_timing="please select the event timing";$error=1;}
-   if(empty($event_venue))
-       {$errevent_venue=  "please fill the event venue ";$error=1;}
-
-   if(empty($society_id))
-       {$errsociety_id="please fill the society Id";$error=1;}
-   if(empty($about_event))
-       { $errabout_event="please fill about the event";$error=1;}
-   if(preg_match("/^[a-zA-Z0-9]+$/",$event_venue)==0)
-       {$errname ="special character is not allowed";$error=1;}
-     
+  
+    if(!preg_match("/^[a-zA-Z ]*$/",$society_name)) {
+      $errsociety_name = "Only letters and white space allowed";
+      $error=1; 
+}
+   
+   
 
  $event_id=rand(10000, 20000);
+ if($error!=1)
+ {
  $query1=mysqli_query($connection, "SELECT * FROM `society` WHERE `society_name`='$society_name'");
  $rows=mysqli_num_rows($query1);
  if($rows>=1)
@@ -54,17 +57,14 @@ if($query_run==true)
 }
 
 
-  else
-  {
-    echo 'cannot register';
-    echo mysqli_errno($connection).":".mysqli_error($connection);
-  }
+  
 }
 else
 {
-  echo "cannot";
+  header('location:Not_Registered.php');
 }
 
+}
 
 
 }
@@ -131,6 +131,7 @@ else
 <head>
 <meta name="viewport" content="width = device-width, initial-scale=1.0">
 <title>EMS-AKGEC</title>
+<link rel="icon" href="images/logoic.ico">
     <link rel="stylesheet" type="text/css" href="css/emscss.css">
 
 <style>
@@ -138,6 +139,7 @@ body{
        background: url("images/coodpgbg.jpg") no-repeat center fixed; 
        background-size: cover;
      }
+     .error {color: #FF0000;}
 </style>
 
 </head>
@@ -145,12 +147,18 @@ body{
 
 <script src="js/emsjs.js">
 </script>
-
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<script src="validation.js">
+</script>
+<button onclick="topFunction()" id="myBtn" title="Go to top">&nbsp;^&nbsp;</button>
 
 <div class="header">
-<a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
-  <h1 style="opacity: 1;">Event Management system</h1>
+<a href="http://www.akgec.in/" title="AKGEC WEBSITE" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
+  <a href="logout.php" title="LOGOUT"><img class='imgpop' style="float: right;" src="images/lo.png"></a>
+  <a href = "coordinator_frontpage.php" title="HOME" ><img class='imgpop' style="float: right;" src="images/home2.png"></a>
+ <div style="text-align: center;">
+  <img  src="images/headerlogo.png">
+  <h1 style="color: #00ABDC">EVENT MANAGEMENT SYSTEM</h1>
+  </div>
 </div>
 <div class="welcome">Welcome Coordinator</div>
 
@@ -158,71 +166,73 @@ body{
 
 <div class="register">
   <div class="aside3">
-    <h2 style="color: blue;text-align: center;"><b><u>New Event Details</u></b></h2><br>
-    <form action="" method="post">
-         <!--   <label style="text-align: left;"><b>Society Id.:</b></label>
-            <input type="text" name="number" pattern="^[+0-9]{1,3})?([0-9]{10}$" id="textdeco" placeholder="Enter Event Id (5 digits)" required="required" />
-            <br><br> -->
+    <h2 style="color: blue;text-align: center;"><b>New Event Details</b></h2><br>
+         
+          <form id="event" action="" method="post" onsubmit="return validateevent();">
+         
             <label style="text-align: left;"><b>Event Name:</b></label>
-            <input type="text" name="event_name" id="textdeco" placeholder="Enter Event Name" required="required" pattern="^[a-zA-Z]{1,40}$" value = "<?php if(!empty($event_name)) echo $event_name;?>" />
-            <span class="error">*<?php echo $errevent_name;?>
+            <p id="name"></p>
+            <input type="text" name="event_name" id="textdeco" placeholder="Enter Event Name" value = "<?php if(!empty($event_name)) echo $event_name;?>" />
+            <span class="error"><?php echo $errevent_name;?></span>
 
 
             <br><br>
+            <p id="socname"></p>
              <label style="text-align: left;"><b>Society Name:</b></label>
-            <input type="text" name="society_name" id="textdeco" placeholder="Enter Event Name" required="required" pattern="^[a-zA-Z]{1,40}$" value = "<?php if(!empty($society_name)) echo $society_name;?>" />
-             <span class="error">*<?php echo $errsociety_name;?>
+            <input type="text" name="society_name" id="textdeco" placeholder="Enter society Name"  value = "<?php if(!empty($society_name)) echo $society_name;?>" />
+             <span class="error">*<?php echo $errsociety_name;?></span>
             <br><br>
-
+             <p id ="category"></p>
             <label style="text-align: left;"><b>Event Category: </b></label>
-            <select name="event_category" id="textdeco" required="required" value = "<?php if(!empty($event_category)) echo $event_category;?>" >
-                <option>select</option>
-                <option>Culture</option> 
-                <option>Technical</option> 
+            <select name="event_category" id="textdeco"  value = "<?php if(!empty($event_category)) echo $event_category;?>" >
+                <option value="0">Select</option>
+                <option value="Culture">Culture</option> 
+                <option value="Technical">Technical</option> 
             </select>
-             <span class="error">*<?php echo $errevent_category;?>
+            
             <br><br>
+            <p id="date"></p>
             <label style="text-align: left;"><b>Event Date: </b></label>
-            <input type = "text" style="width: 15%" name="event_date" id="textdeco" required="required" placeholder = "YY-MM-DD" value = "<?php if(!empty($event_date)) echo $event_date;?>" >
+            <input type = "text" style="width: 15%" name="event_date" id="textdeco" placeholder = "YY-MM-DD" value = "<?php if(!empty($event_date)) echo $event_date;?>" >
                
-     <span class="error">*<?php echo $errevent_date;?>
+     <span class="error">*<?php echo $errevent_date;?></span>
     <br><br>
+    <p id="time"></p>
     <label style="text-align: left;"><b>Event Time: </b></label>
-            <select style="width: 15%" name="event_timing" id="textdeco" required="required" value = "<?php if(!empty($event_timing)) echo $event_timing;?>" >
-                <option>HH</option> 
-                <option>1</option> 
-                <option>2</option> 
-                <option>3</option> 
-                <option>4</option> 
-                <option>5</option> 
-                <option>6</option> 
-                <option>7</option> 
-                <option>8</option> 
-                <option>9</option> 
-                <option>10</option> 
-                <option>11</option> 
-                <option>12</option> 
+            <select style="width: 15%" name="event_timing" id="textdeco"  value = "<?php if(!empty($event_timing)) echo $event_timing;?>" >
+                <option value="0">HH</option> 
+                <option value="1">1</option> 
+                <option value="2">2</option> 
+                <option value="3">3</option> 
+                <option value="4">4</option> 
+                <option value="5">5</option> 
+                <option value="6">6</option> 
+                <option value="7">7</option> 
+                <option value="8">8</option> 
+                <option value="9">9</option> 
+                <option value="10">10</option> 
+                <option value="11">11</option> 
+                <option value="12">12</option> 
     </select>:
    
-    <select style="width: 15%" name="event_ist" id="textdeco" required="required" value = "<?php if(!empty($event_ist)) echo $event_ist;?>">
-                <option>AM/PM</option> 
+    <select style="width: 15%" name="event_ist" id="textdeco"  value = "<?php if(!empty($event_ist)) echo $event_ist;?>">
                 <option>AM</option> 
                 <option>PM</option> 
     </select>
-     <span class="error">*<?php echo $errevent_timing;?>
+     
     <br><br>
+    <p id="venue"></p>
     <label style="text-align: left;"><b>Venue:</b></label>
-            <input type="text" name="event_venue" id="textdeco" placeholder="Enter event's venue name" required="required" value = "<?php if(!empty($event_venue)) echo $event_venue;?>"/>
-             <span class="error">*<?php echo $errevent_venue;?>
+            <input type="text" name="event_venue" id="textdeco" placeholder="Enter event's venue name"  value = "<?php if(!empty($event_venue)) echo $event_venue;?>"/>
+             <span class="error"><?php echo $errevent_venue;?></span>
             <br><br>
     
             
           
-            <label style="text-align: left;"><b>Upload Event details:</b></label> <span class="error">*<?php echo $errabout_event;?><br>
-            <input type="text" name="about_event" id="fileToUpload" value = "<?php if(!empty($about_event)) echo $about_event;?>"><br><br>
+           
              
            
-
+            <div style="text-align: center;">
             <br><br>
             <button type="submit" class="button2" name="submit">Submit</button>
            
@@ -235,11 +245,17 @@ body{
 </div>
 
 <div class="footer">
-  <p>Thank You</p>
+  <p>EMS AKGEC 2017</p>
 </div>
 
 
 </body>
 </html>
+<?php
+}
+else
+{
+  header('location:index.php');
+}
 
-
+?>
