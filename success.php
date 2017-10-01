@@ -26,19 +26,23 @@ window.onload= function() {
 
 <div class="header">
 <a href="http://www.akgec.in/" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
-  <a ><img class='imgpop' style="float: right;" src="images/lo.png"></a>
-  <a href="index.html" title="HOME" ><img class='imgpop' style="float: right;" src="images/home2.png"></a>
-  <div style="text-align: center;">
-  <img class='imgpop' src="images/headerlogo.png">
-  <h1 style="color: #00ABDC">EVENT MANAGEMENT SYSTEM</h1>
-  </div>
+    <a >
+       <img class='imgpop' style="float: right;" src="images/lo.png">
+    </a>
+    <a href="index.php" title="HOME" >
+       <img class='imgpop' style="float: right;" src="images/home2.png">
+    </a>
+     <div style="text-align: center;">
+       <img class='imgpop' src="images/headerlogo.png">
+         <h1 style="color: #00ABDC">EVENT MANAGEMENT SYSTEM</h1>
+     </div>
 </div>
-<div class="row">
-<div style="text-align: center;">
-<br><br>
+    <div class="row">
+        <div style="text-align: center;">
+         <br><br>
 
 
-<div id="myModal" class="modal">
+        <div id="myModal" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
@@ -46,7 +50,7 @@ window.onload= function() {
       <span class="close">&times;</span>
       <h1 style="font-color:red; text-align: center; font-size:25px">Successfull</h1>
       <!-- change here -->
-      <a href="coordinator1.html"><button style="float: center;" type="back" class="button3" >Go Back</button></a>
+      <a href="coordinator_frontpage.php"><button style="float: center;" type="back" class="button3" >Go Back</button></a>
 
     </div>
   </div>
