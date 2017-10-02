@@ -1,6 +1,7 @@
 <?php
 require('db_connection.php');
 session_start();
+$error=0;
 if(isset($_SESSION["name"]))
 {
 $errevent_name=$errsociety_name=$errevent_date=$errevent_timing=$errevent_venue=$errsociety_id=$errabout_event=$errevent_category="";
@@ -9,29 +10,27 @@ $errevent_name=$errsociety_name=$errevent_date=$errevent_timing=$errevent_venue=
 if(isset($_POST['submit']))
 {
   $event_name = mysqli_real_escape_string($connection,$_POST['event_name']);
-    if (!preg_match("/^[a-zA-Z ]*$/",$event_name)) {
-      $errevent_name = "Only letters and white space allowed";
+  if (!preg_match("/^[a-zA-Z ]*$/",$event_name)) {
+      $nameErr = "Only letters and white space allowed";
       $error=1; 
     }
   $event_category =mysqli_real_escape_string($connection,$_POST['event_category']);
   $event_date = mysqli_real_escape_string($connection,$_POST['event_date']);
   $regex = '/^((([1-2][0-9])|([1-9]))/([2])/[0-9]{4})|((([1-2][0-9])|([1-9])|(3[0-1]))/((1[0-2])|([3-9])|([1]))/[0-9]{4})$/';
-    if(preg_match($regex, $event_date)) {
+    if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$event_date)) {
          $errevent_date="invalid date format";
          $error=1;
        }
   $event_timing =mysqli_real_escape_string($connection,$_POST['event_timing']);
   $event_ist =mysqli_real_escape_string($connection,$_POST['event_ist']);
   $event_venue = mysqli_real_escape_string($connection,$_POST['event_venue']);
-  if (!preg_match("/^[a-zA-Z0-9 ]*$/",$event_venue)) {
-      $errevent_venue = "Only letters,numbers and white space allowed";
+  if (!preg_match("/^[a-zA-Z ]*$/",$event_venue)) {
+      $errevent_venue = "Only letters and white space allowed";
       $error=1;
     }
   
    $society_name=mysqli_real_escape_string($connection, $_POST['society_name']);
-
-  
-    if(!preg_match("/^[a-zA-Z ]*$/",$society_name)) {
+   if (!preg_match("/^[a-zA-Z ]*$/",$society_name)) {
       $errsociety_name = "Only letters and white space allowed";
       $error=1; 
 }
@@ -41,16 +40,20 @@ if(isset($_POST['submit']))
  $event_id=rand(10000, 20000);
  if($error!=1)
  {
- $query1=mysqli_query($connection, "SELECT * FROM `society` WHERE `society_name`='$society_name'");
- $rows=mysqli_num_rows($query1);
- if($rows>=1)
- {
-  $row=mysqli_fetch_array($query1);
-  $society_id=$row['society_id'];
+   $cod_name=$_SESSION["name"];
+                      $query1=mysqli_query($connection, "SELECT * FROM coordinator WHERE `coordiantor_name`='$cod_name'");
+                      $rows=mysqli_num_rows($query1);
+                      if($rows>0)
+        
+                        $row=mysqli_fetch_array($query1);
+                        $society_id=$row['society_id'];
+ 
  
 
  $query="INSERT INTO `event`(`society_id`,`event_name`,`event_date`,`event_timing`,`event_ist`,`event_venue`,`event_id`,`event_category`,`event_status`) VALUES('$society_id','$event_name','$event_date','$event_timing','$event_ist','$event_venue','$event_id','$event_category','pending')";
 $query_run=mysqli_query($connection,$query);
+echo mysqli_error($connection);
+}
 if($query_run==true)
 {
 	header('location:success.php');
@@ -58,11 +61,8 @@ if($query_run==true)
 
 
   
-}
-else
-{
-  header('location:Not_Registered.php');
-}
+
+
 
 }
 
@@ -153,8 +153,8 @@ body{
 
 <div class="header">
 <a href="http://www.akgec.in/" title="AKGEC WEBSITE" target="_blank"><img style="float: left;" src="images/akgeclogo.png"></a>
-  <a href="logout.php" title="LOGOUT"><img class='imgpop' style="float: right;" src="images/lo.png"></a>
-  <a href = "coordinator_frontpage.php" title="HOME" ><img class='imgpop' style="float: right;" src="images/home2.png"></a>
+  <a href="index2.php" title="LOGOUT"><img class='imgpop' style="float: right;" src="images/lo.png"></a>
+  <a href = "coordinator1.html" title="HOME" ><img class='imgpop' style="float: right;" src="images/home2.png"></a>
  <div style="text-align: center;">
   <img  src="images/headerlogo.png">
   <h1 style="color: #00ABDC">EVENT MANAGEMENT SYSTEM</h1>
@@ -171,34 +171,34 @@ body{
           <form id="event" action="" method="post" onsubmit="return validateevent();">
          
             <label style="text-align: left;"><b>Event Name:</b></label>
-            <p id="name"></p>
             <input type="text" name="event_name" id="textdeco" placeholder="Enter Event Name" value = "<?php if(!empty($event_name)) echo $event_name;?>" />
             <span class="error"><?php echo $errevent_name;?></span>
-
-
+            <p style="font-size: 15px; color: red;" id="name"></p>
             <br><br>
-            <p id="socname"></p>
-             <label style="text-align: left;"><b>Society Name:</b></label>
+            
+
+         <!--   <label style="text-align: left;"><b>Society Name:</b></label>
             <input type="text" name="society_name" id="textdeco" placeholder="Enter society Name"  value = "<?php if(!empty($society_name)) echo $society_name;?>" />
-             <span class="error">*<?php echo $errsociety_name;?></span>
-            <br><br>
-             <p id ="category"></p>
+            <span class="error"><?php echo $errsociety_name;?></span>
+            <p style="font-size: 15px; color: red;" id="socname"></p>
+            <br><br> -->
+            
             <label style="text-align: left;"><b>Event Category: </b></label>
             <select name="event_category" id="textdeco"  value = "<?php if(!empty($event_category)) echo $event_category;?>" >
                 <option value="0">Select</option>
                 <option value="Culture">Culture</option> 
                 <option value="Technical">Technical</option> 
             </select>
-            
+            <p style="font-size: 15px; color: red;" id ="category"></p>
             <br><br>
-            <p id="date"></p>
+            
             <label style="text-align: left;"><b>Event Date: </b></label>
             <input type = "text" style="width: 15%" name="event_date" id="textdeco" placeholder = "YY-MM-DD" value = "<?php if(!empty($event_date)) echo $event_date;?>" >
-               
-     <span class="error">*<?php echo $errevent_date;?></span>
-    <br><br>
-    <p id="time"></p>
-    <label style="text-align: left;"><b>Event Time: </b></label>
+            <span class="error"><?php echo $errevent_date;?></span>
+            <p style="font-size: 15px; color: red;" id="date"></p>
+            <br><br>
+
+            <label style="text-align: left;"><b>Event Time: </b></label>
             <select style="width: 15%" name="event_timing" id="textdeco"  value = "<?php if(!empty($event_timing)) echo $event_timing;?>" >
                 <option value="0">HH</option> 
                 <option value="1">1</option> 
@@ -213,23 +213,25 @@ body{
                 <option value="10">10</option> 
                 <option value="11">11</option> 
                 <option value="12">12</option> 
-    </select>:
-   
-    <select style="width: 15%" name="event_ist" id="textdeco"  value = "<?php if(!empty($event_ist)) echo $event_ist;?>">
+            </select>:
+            <select style="width: 15%" name="event_ist" id="textdeco"  value = "<?php if(!empty($event_ist)) echo $event_ist;?>">
                 <option>AM</option> 
                 <option>PM</option> 
-    </select>
-     
-    <br><br>
-    <p id="venue"></p>
-    <label style="text-align: left;"><b>Venue:</b></label>
+            </select>
+            <p style="font-size: 15px; color: red;" id="time"></p>
+            <br><br>
+
+
+            <label style="text-align: left;"><b>Venue:</b></label>
             <input type="text" name="event_venue" id="textdeco" placeholder="Enter event's venue name"  value = "<?php if(!empty($event_venue)) echo $event_venue;?>"/>
-             <span class="error"><?php echo $errevent_venue;?></span>
+            <span class="error"><?php echo $errevent_venue;?></span>
+            <p style="font-size: 15px; color: red;" id="venue"></p>
             <br><br>
     
             
           
-           
+           <!-- <label style="text-align: left;"><b>Upload Event details:</b></label> <span class="error">*<?php echo $errabout_event;?><br>
+            <input type="text" name="about_event" id="fileToUpload" value = "<?php if(!empty($about_event)) echo $about_event;?>"><br><br> -->
              
            
             <div style="text-align: center;">
@@ -252,10 +254,10 @@ body{
 </body>
 </html>
 <?php
-}
-else
-{
-  header('location:index.php');
-}
+//}
+//else
+//{
+  //header('location:index.php');
+//}
 
 ?>
