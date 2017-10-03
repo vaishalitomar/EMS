@@ -181,7 +181,7 @@ ADMIN DETAILS BOX - super admin .html
     position: relative;
 }
 .slide {
-    animation-name: greyscale;
+    
     animation-duration: 8s;
     animation-iteration-count: infinite;
     border-radius:18px;
@@ -201,7 +201,7 @@ ADMIN DETAILS BOX - super admin .html
 
 /*================= GRID VIEW FOR DESKTOP SITE ====================*/
 
-@media only screen and (min-width: 1015px) {
+@media only screen and (min-width: 1065px) {
 
 /*================= Styling for all columns ====================*/
 
@@ -595,15 +595,3 @@ input[type=checkbox]:checked + label:after {
     opacity: 1;
 }
 
-@keyframes greyscale {
-0% {  box-shadow: 5px 5px 5px red;}
-
-25% {box-shadow: 5px 5px 5px blue;}
-
-50% { box-shadow: 5px 5px 5px white;}
-
-75% { box-shadow: 5px 5px 5px black;}
-
-100% { box-shadow: 5px 5px 5px red;}
-
-}

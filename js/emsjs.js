@@ -44,6 +44,13 @@ window.onclick = function(event) {
 
 // ========= Scroll to Top =============== 
 
+function on() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+    document.getElementById("overlay").style.display = "none";
+}
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
